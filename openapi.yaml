@@ -9,6 +9,8 @@ servers:
 paths:
   /students:
     post:
+      tags:
+        - "students"
       summary: Add a new student
       description: Add a new student
       operationId: addPet
@@ -30,6 +32,8 @@ paths:
           description: Invalid input
     
     get:
+      tags:
+        - "students"
       summary: receive student
       description: receive student
       responses:
@@ -71,4 +75,4 @@ components:
           schema:
             $ref: '#/components/schemas/Student'
    
-  gi
+  

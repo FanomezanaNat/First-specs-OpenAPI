@@ -108,11 +108,11 @@ paths:
     post:
       tags:
         - "teachers"
-      summary: Ajouter un nouvel enseignant
-      description: Ajouter un nouvel enseignant
+      summary: Add a new teacher
+      description: Add new teacher
       operationId: addTeacher
       requestBody:
-        description: Objet enseignant à ajouter
+        description: Teacher need to be added
         required: true
         content:
           application/json:
@@ -120,9 +120,9 @@ paths:
               $ref: '#/components/schemas/Teacher'
       responses:
         '200':
-          description: Opération réussie, l'enseignant a été ajouté
+          description: Operation successful, teacher added
         '405':
-          description: Entrée invalide
+          description: Not allowed
 components:
   schemas:
     Student:
@@ -149,17 +149,21 @@ components:
       properties:
         firstName:
           type: string
-          example: John
+          example: Tokimahery
         lastName:
           type: string
-          example: Doe
+          example: RAMAROZAKA
         courses:
           type: array
           items:
-            type: string
+            type: object
           example:
-            - Math
-            - Science
+            - code: MATH101
+              name: Math
+              duration: 60
+            - code: SCIENCE202
+              name: Science
+              duration: 90
   requestBodies:
     Student:
       description: Student object  that needs to be added

@@ -47,6 +47,33 @@ paths:
                   $ref: '#/components/schemas/Student'
         '400':
           description: Invalid status value
+    put:
+      tags:
+        - "students"
+      summary: update a new student
+      description: update a new student by Id
+      operationId: updateStudent
+      requestBody:
+        description: need a student
+        content:
+          application/json:
+            schema:
+              $ref : "#/components/schemas/Student"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Student"
+      responses:
+        '200':
+          description: Operation successful, the student is been updated
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Student"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Student"
+        '500':
+          description: Oops, there's an error with the server
 components:
   schemas:
     Student:

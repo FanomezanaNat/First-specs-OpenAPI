@@ -122,7 +122,7 @@ components:
           type: string
           format: date
   requestBodies:
-    Pet:
+    Student:
       description: Student object  that needs to be added
       content:
         application/json:

@@ -13,32 +13,31 @@ paths:
         - "students"
       summary: Add a new student
       description: Add a new student
-      operationId: addPet
+      operationId: addStudent
       requestBody:
-        description: Create a new student
+        description: Student object to be added
+        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Student'
-        required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Student'          
+                $ref: '#/components/schemas/Student'
         '405':
           description: Invalid input
-    
     get:
       tags:
         - "students"
-      summary: receive student
-      description: receive student
+      summary: Retrieve students
+      description: Retrieve a list of students
       responses:
         '200':
-          description: successful operation
+          description: Successful operation
           content:
             application/json:
               schema:
@@ -47,31 +46,62 @@ paths:
                   $ref: '#/components/schemas/Student'
         '400':
           description: Invalid status value
+  /students/{id}:
     put:
       tags:
         - "students"
-      summary: update a new student
-      description: update a new student by Id
+      summary: Update a student by ID
+      description: Update a student by ID
       operationId: updateStudent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the student to be updated
+          schema:
+            type: integer
+            format: int64
       requestBody:
-        description: need a student
+        description: Student object to update
+        required: true
         content:
           application/json:
             schema:
-              $ref : "#/components/schemas/Student"
+              $ref: "#/components/schemas/Student"
           application/xml:
             schema:
               $ref: "#/components/schemas/Student"
       responses:
         '200':
-          description: Operation successful, the student is been updated
+          description: Operation successful, the student has been updated
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: "#/components/schemas/Student"
             application/xml:
               schema:
                 $ref: "#/components/schemas/Student"
+        '500':
+          description: Oops, there's an error with the server
+    delete:
+      tags:
+        - "students"
+      summary: Delete a student by ID
+      description: Delete a student by ID
+      operationId: deleteStudent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the student to be deleted
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Operation successful, the student has been deleted
+        '404':
+          description: Student not found
         '500':
           description: Oops, there's an error with the server
 components:

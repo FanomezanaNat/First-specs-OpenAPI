@@ -123,6 +123,22 @@ paths:
           description: Operation successful, teacher added
         '405':
           description: Not allowed
+    get:
+      tags:
+        - "teachers"
+      summary: Retrieve teacher
+      description: Retrieve a list of teacher
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Teacher'
+        '400':
+          description: Invalid status value
 components:
   schemas:
     Student:
@@ -158,12 +174,12 @@ components:
           items:
             type: object
           example:
-            - code: MATH101
-              name: Math
-              duration: 60
-            - code: SCIENCE202
-              name: Science
-              duration: 90
+            - code: Algorythme
+              name: PROG1
+              duration: 20
+            - code: POO
+              name: PROG2
+              duration: 20
   requestBodies:
     Student:
       description: Student object  that needs to be added

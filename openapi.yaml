@@ -104,6 +104,25 @@ paths:
           description: Student not found
         '500':
           description: Oops, there's an error with the server
+  /teachers:
+    post:
+      tags:
+        - "teachers"
+      summary: Ajouter un nouvel enseignant
+      description: Ajouter un nouvel enseignant
+      operationId: addTeacher
+      requestBody:
+        description: Objet enseignant à ajouter
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Teacher'
+      responses:
+        '200':
+          description: Opération réussie, l'enseignant a été ajouté
+        '405':
+          description: Entrée invalide
 components:
   schemas:
     Student:
@@ -121,6 +140,26 @@ components:
         birthDate:
           type: string
           format: date
+    Teacher:
+      required:
+        - firstName
+        - lastName
+        - courses
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        courses:
+          type: array
+          items:
+            type: string
+          example:
+            - Math
+            - Science
   requestBodies:
     Student:
       description: Student object  that needs to be added
@@ -131,5 +170,14 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/Student'
+    Teacher:
+      description: Teacher that needs to be added
+      content:
+        application/json:
+          schema:  
+            $ref: "#/components/schemas/Teacher"
+        application/xml:
+          schema: 
+            $ref: "#/components/schemas/Teacher"
    
   
